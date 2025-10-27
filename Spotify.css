@@ -83,11 +83,21 @@ header nav input{
     justify-content: space-between;
     margin: 2px;
 }
+
 .lab h3{
     padding: 0px;
+    opacity: 0.5;
 }
+.lab h3:hover{
+    opacity: 1;
+}
+
 .lab i{
-    padding: 15px; 
+    padding: 20px; 
+    opacity: 0.5;
+}
+.lab i:hover{
+    opacity: 1;
 }
 .labcont{
     background-color: #232323;
