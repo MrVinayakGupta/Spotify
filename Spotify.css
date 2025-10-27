@@ -24,6 +24,7 @@ header nav input{
 
 .leftcont{
     width: 27vw;
+    height: 100vh;
     background-color: black; 
     position: relative;
 }
@@ -129,6 +130,7 @@ header nav input{
 
 .rightcont{
     width: 73vw;
+    height: 100vh;
     position: static;
     background-color: #000;
     /* border: 10px solid black; */
@@ -137,10 +139,11 @@ header nav input{
 .rightcont nav{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
     background-color: #212121;
-    border-radius: 20px;
-    /* border: solid black; */  
+    border-radius: 0 0 20px 20px;
+    height: 5%;
 }
 
 .rightcont nav i{
