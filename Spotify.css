@@ -62,6 +62,7 @@ header nav input{
     position: absolute;
     font-size: 12px;
     opacity: 0.7;
+    padding: 10px;
 }
 .sc-bmzYkS {
     display: flex;
@@ -170,6 +171,11 @@ header nav input{
     width: 4rem;
     font-size: 16px;
 } 
+#logIn:hover{
+    width: 4.2rem;
+    font-size: 17px;
+}
+
 .cardCont{
     display: flex;
     flex-wrap: wrap;
