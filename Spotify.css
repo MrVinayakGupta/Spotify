@@ -21,7 +21,7 @@ header nav input{
 }
 
 .leftcont{
-    width: 25vw;
+    width: 27vw;
     background-color: black; 
     /* position: static; */
 }
@@ -87,6 +87,7 @@ header nav input{
 .lab h3{
     padding: 0px;
     opacity: 0.5;
+    cursor: pointer;
 }
 .lab h3:hover{
     opacity: 1;
@@ -124,7 +125,7 @@ header nav input{
 
 
 .rightcont{
-    width: 75vw;
+    width: 73vw;
     position: static;
     background-color: #000;
     /* border: 10px solid black; */
