@@ -49,6 +49,9 @@ header nav input{
 }
 .leftcont ul li{
     margin: 9px 0px ; 
+    opacity: 0.5;
+    line-height: 1.5em;
+    word-spacing: 1em;
 }
 .leftcont .footer {
     bottom: 0;
