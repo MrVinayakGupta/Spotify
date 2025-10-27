@@ -137,12 +137,22 @@ header nav input{
     padding: 20px;
     background-color: #212121;
     border-radius: 20px;
-    /* border: solid black; */
-    
+    /* border: solid black; */  
 }
-.rightcont nav svg{
+
+.rightcont nav i{
     margin-right: 8px;
+    opacity: 0.5;
+    font-size: 23px;
+    font-weight: 800;
 }
+.rightcont nav i:hover{
+    opacity: 1;
+    background-color: white;
+    color: #252525;
+    border-radius: 50%;
+}
+
 #singUp{
     background-color: transparent;
     color: white;
