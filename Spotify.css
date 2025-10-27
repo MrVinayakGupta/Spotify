@@ -52,6 +52,10 @@ header nav input{
     opacity: 0.5;
     line-height: 1.5em;
     word-spacing: 1em;
+    cursor: pointer;
+}
+.leftcont ul li:hover{
+    opacity: 1;
 }
 .leftcont .footer {
     bottom: 0;
