@@ -148,17 +148,20 @@ header nav input{
 }
 .rightcont nav i:hover{
     opacity: 1;
-    background-color: white;
-    color: #252525;
     border-radius: 50%;
 }
 
 #singUp{
     background-color: transparent;
     color: white;
-
+    opacity: 0.5;
+    border: none;
+    font-size: 16px;
 }
-.rightcont nav button{
+#singUp:hover{
+    opacity: 1;
+}
+#logIn{
     color: #000;
     border: 0px solid transparent;
     border-radius: 20px;
