@@ -204,7 +204,7 @@ header nav input {
     align-items: flex-start;
     border: 4px solid black;
     background-color: #121212;
-    height: 95%;
+    height: calc(91% - 53px);
     overflow: scroll;
 }
 
