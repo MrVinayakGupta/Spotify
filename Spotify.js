@@ -23,14 +23,14 @@ async function main() {
 
 
     let play = document.getElementById("play").addEventListener("click", function () {
-        for(let i=0; i<songs.length; i++){
-        const audio = new Audio(songs[i]);
-        audio.play();
-        function pauseAudio() {
-            audio = document.getElementById('play');
-            audio.pause();
+        for (let i = 0; i < songs.length; i++) {
+            const audio = new Audio(songs[i]);
+            audio.play();
+            function pauseAudio() {
+                audio = document.getElementById('play');
+                audio.pause();
+            }
         }
-    }
     });
 
 
