@@ -29,18 +29,7 @@ async function showSongs(){
       </div>`; 
 }
 
-//For Next songs
-function nextSongs(){
-  let next = document.getElementById("nextSong").addEventListener("click", function (event) {
-    if (event.target.id === 'nextSong') {
-      currentAudio.pause();
-      currentAudio = new Audio(songs[currentIndex + 1]);
-      currentAudio.play();
 
-    }
-    return currentAudio;
-  });
-}
 async function main() {
   let songs = await getSongs();
   console.log(songs);
@@ -52,13 +41,11 @@ async function main() {
   //For Play and Pause
   let play = document.getElementById("play").addEventListener("click", function () {
 
-    const button = document.getElementById("playPauseBtn");
-
     if (!currentAudio) {
       // for (let i = 0; i < songs.length; i++) {
         currentAudio = new Audio(songs[currentIndex]);
         currentAudio.play();
-        button.textContent = "Pause ⏸️";
+        // play.innerHTML = "<h1>none</h1>";
       // }
     } else if (currentAudio.paused) {
       currentAudio.play();
@@ -69,7 +56,16 @@ async function main() {
     }
   });
 
-  
+  //For Next songs
+  let next = document.getElementById("nextSong").addEventListener("click", function (event) {
+    if (event.target.id === 'nextSong') {
+      currentAudio.pause();
+      currentAudio = new Audio(songs[currentIndex + 1]);
+      currentAudio.play();
+
+    }
+    return currentAudio;
+  });
 
   //For Previes songs
   let previes = document.getElementById("previeSongs").addEventListener("click", function (event) {
