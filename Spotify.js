@@ -17,6 +17,30 @@ async function getSongs() {
   return songs;
 }
 
+async function showSongs(){
+  let songs = await getSongs();
+  
+  let card = document.getElementsByClassName("card");
+  card.innerHTML =`<div class="card">
+        <img width="150"
+          src="https://1.bp.blogspot.com/-ibeZxlc9ahU/WJp4Nx55aXI/AAAAAAAAFsQ/HqG2QEmkObEXcmHYXXYrYHHUDA8crKxjQCLcB/s1600/Create%2Ba%2BCity%2BSound%2BMusic%2BPoster%2BDesign%2BIn%2BPhotoshop%2BCC.jpg">
+        <h5>Happy hits!</h5>
+        <p>hits to boost your mood and fill you with...</p>
+      </div>`; 
+}
+
+//For Next songs
+function nextSongs(){
+  let next = document.getElementById("nextSong").addEventListener("click", function (event) {
+    if (event.target.id === 'nextSong') {
+      currentAudio.pause();
+      currentAudio = new Audio(songs[currentIndex + 1]);
+      currentAudio.play();
+
+    }
+    return currentAudio;
+  });
+}
 async function main() {
   let songs = await getSongs();
   console.log(songs);
@@ -45,16 +69,7 @@ async function main() {
     }
   });
 
-  //For Next songs
-  let next = document.getElementById("nextSong").addEventListener("click", function (event) {
-    if (event.target.id === 'nextSong') {
-      currentAudio.pause();
-      currentAudio = new Audio(songs[currentIndex + 1]);
-      currentAudio.play();
-
-    }
-    return currentAudio;
-  });
+  
 
   //For Previes songs
   let previes = document.getElementById("previeSongs").addEventListener("click", function (event) {
