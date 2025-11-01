@@ -113,7 +113,7 @@ header nav input {
 .labcont {
     background-color: #232323;
     border-radius: 10px;
-    /* height: 100px; */
+    
     margin: 5px 5px 10px 5px;
     line-height: 35px;
 }
@@ -130,9 +130,11 @@ header nav input {
     color: #000;
     border-radius: 10px;
     border: 0px solid transparent;
-    width: 6.5rem;
-    height: 2rem;
+    padding: 0.7em;
     margin: 0px 0px 10px 19px;
+}
+.labcont button:hover{
+    padding: 0.8em;
 }
 
 
