@@ -266,20 +266,42 @@ footer {
 .footerRight{
     width: 25%;
 }
+
 .footerMiddle{
     width: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+.footerMiddle i{
+    opacity: 0.5;
+    font-size: 23px;
+}
+.footerMiddle i:hover{
+    opacity: 1;
+}
+#play{
+    font-size: 30px;
+    opacity: 1;
+    margin: 0 5px;
+}
+#play:hover{
+    font-size: 35px;
+    margin: 0 2px;
+}
+
 .footerLeft{
     width: 25%;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 7px;
-    font-size: 20px;
+    font-size: 19px;
 }
 .footerLeft input{
     height: 2px;
+    cursor: pointer;
+    margin: 0 20px 0 0; 
 }
 
 
