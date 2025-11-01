@@ -180,6 +180,7 @@ header nav input {
 
 #singUp:hover {
     opacity: 1;
+    font-weight: 600;
 }
 
 #logIn {
@@ -190,11 +191,13 @@ header nav input {
     height: 2rem;
     width: 4rem;
     font-size: 16px;
+    font-weight: 500;
 }
 
 #logIn:hover {
     /* width: 4.2rem; */
     font-size: 17px;
+    font-weight: 700;
 }
 
 .cardCont {
