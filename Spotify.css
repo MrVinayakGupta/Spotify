@@ -24,7 +24,7 @@ header nav input {
 
 .leftcont {
     width: 27vw;
-    height: 100vh;
+    height: calc(100vh - 48px);
     overflow: hidden;
     background-color: black;
     position: relative;
@@ -191,7 +191,7 @@ header nav input {
 }
 
 #logIn:hover {
-    width: 4.2rem;
+    /* width: 4.2rem; */
     font-size: 17px;
 }
 
@@ -261,25 +261,38 @@ main footer {
     justify-content: center;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    background: black;
+    height: 52px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /* Target the scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 /* Track (background) */
 ::-webkit-scrollbar-track {
-  background: #000; /* black */
+    background: #000;
+    /* black */
 }
 
 /* Handle (thumb) */
 ::-webkit-scrollbar-thumb {
-  background: #333; /* dark gray */
-  border-radius: 6px;
+    background: #333;
+    /* dark gray */
+    border-radius: 6px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
