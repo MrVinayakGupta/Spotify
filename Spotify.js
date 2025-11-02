@@ -5,7 +5,6 @@ async function getSongs() {
   let div = document.createElement("div");
   div.innerHTML = response;
   let as = div.getElementsByTagName("a");
-  console.log(as);
   let songs = [];
 
   for (let index = 0; index < as.length; index++) {
@@ -37,35 +36,13 @@ async function addSongs() {
   }
 }
 
-
-const playMusic = () => {
-
-}
-
-async function showSongs(){
+let currentAudio = null;
+    let currentIndex = 0;
+async function playMusic() {
   let songs = await getSongs();
-  
-  let card = document.getElementsByClassName("card");
-  card.innerHTML =`<div class="card">
-        <img width="150"
-          src="https://1.bp.blogspot.com/-ibeZxlc9ahU/WJp4Nx55aXI/AAAAAAAAFsQ/HqG2QEmkObEXcmHYXXYrYHHUDA8crKxjQCLcB/s1600/Create%2Ba%2BCity%2BSound%2BMusic%2BPoster%2BDesign%2BIn%2BPhotoshop%2BCC.jpg">
-        <h5>Happy hits!</h5>
-        <p>hits to boost your mood and fill you with...</p>
-      </div>`; 
-}
-
-
-async function main() {
-  let songs = await getSongs();
-  console.log(songs);
-
-
-  let currentAudio = null;
-  let currentIndex = 0;
-
-  //For Play and Pause
   let play = document.getElementById("play").addEventListener("click", function () {
-
+    
+    
     if (!currentAudio) {
       // for (let i = 0; i < songs.length; i++) {
         currentAudio = new Audio(songs[currentIndex]);
@@ -81,15 +58,43 @@ async function main() {
     }
   });
 
-  //For Next songs
-  let next = document.getElementById("nextSong").addEventListener("click", function (event) {
-    if (event.target.id === 'nextSong') {
-      currentAudio.pause();
-      currentAudio = new Audio(songs[currentIndex + 1]);
-      currentAudio.play();
+}
+async function nextSong() {
+  let songs = await getSongs();
+  if (songs.length === 0) return;
 
-    }
-    return currentAudio;
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  currentIndex = (currentIndex + 1) % songs.length; // Loop to start if at end
+  currentAudio = new Audio(songs[currentIndex]);
+  currentAudio.play();
+}
+
+
+async function main() {
+  let songs = await getSongs();
+  
+  let currentAudio = null;
+  let currentIndex = 0;
+
+  //For Play and Pause
+  let play = document.getElementById("play").addEventListener("click", function () {
+    playMusic();
+  });
+
+  //For Next songs
+  let next = document.getElementById("nextSong").addEventListener("click", function () {
+    nextSong();
+    // if (event.target.id === 'nextSong') {
+    //   currentAudio.pause();
+    //   currentAudio = new Audio(songs[currentIndex + 1]);
+    //   currentAudio.play();
+
+    // }
+    // return currentAudio;
   });
 
   //For Previes songs
