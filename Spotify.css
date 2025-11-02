@@ -239,6 +239,9 @@ header nav input {
     width: 160px;
     background-color: #232323;
 }
+.cardCont .card a{
+    text-decoration: none;
+}
 
 .cardCont .card p {
     font-size: 12px;
