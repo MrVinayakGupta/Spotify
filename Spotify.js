@@ -40,7 +40,7 @@ let currentAudio = null;
 let currentIndex = 0;
 async function playMusic() {
   let songs = await getSongs();
-  let play = document.getElementById("play").addEventListener("click", function () {
+  // let play = document.getElementById("play").addEventListener("click", function () {
 
 
     if (!currentAudio) {
@@ -56,7 +56,7 @@ async function playMusic() {
       currentAudio.pause();
       // button.textContent = "Play ▶️";
     }
-  });
+  // });
 
 }
 async function nextSong() {
@@ -69,6 +69,20 @@ async function nextSong() {
   }
 
   currentIndex = (currentIndex + 1) % songs.length; // Loop to start if at end
+  currentAudio = new Audio(songs[currentIndex]);
+  currentAudio.play();
+}
+async function previouSong() {
+  let songs = await getSongs();
+  if(songs.length === 0) {
+    return;
+  }
+  if(currentAudio){
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  currentIndex = (currentIndex - 1) % songs.length;
   currentAudio = new Audio(songs[currentIndex]);
   currentAudio.play();
 }
@@ -98,13 +112,14 @@ async function main() {
   });
 
   //For Previes songs
-  let previes = document.getElementById("previeSongs").addEventListener("click", function (event) {
-    if (event.target.id === 'previeSongs') {
-      currentAudio.pause();
-      currentAudio = new Audio(songs[currentIndex - 1]);
-      currentAudio.play();
-    }
-  })
+  let previes = document.getElementById("previouSong").addEventListener("click", function () {
+    previouSong();
+    // if (event.target.id === 'previeSongs') {
+    //   currentAudio.pause();
+    //   currentAudio = new Audio(songs[currentIndex - 1]);
+    //   currentAudio.play();
+    // }
+  });
 
   // for (let i = 0; i < songs.length; i++) {
   //     const audio = new Audio(songs[i]);
