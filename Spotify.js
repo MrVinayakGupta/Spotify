@@ -14,7 +14,32 @@ async function getSongs() {
       songs.push(element.href);
     }
   }
+
+  
   return songs;
+}
+
+
+async function addSongs() {
+  let cardContainer = document.getElementsByClassName("cardCont")[0]; // Fix: access first element
+  let songs = await getSongs();
+
+  for (const song of songs) {
+    cardContainer.innerHTML += `
+      <div class="card">
+        <a href="${song}">
+          <img width="150"
+            src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432&m=6&x=610&y=168&s=341&d=341">
+          <h5>Happy hits!</h5>
+          <p>hits to boost your mood and fill you with...</p>
+        </a>
+      </div>`;
+  }
+}
+
+
+const playMusic = () => {
+
 }
 
 async function showSongs(){
@@ -90,3 +115,4 @@ async function main() {
 }
 
 main();
+addSongs();
