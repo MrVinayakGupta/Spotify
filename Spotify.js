@@ -43,19 +43,19 @@ async function playMusic() {
   // let play = document.getElementById("play").addEventListener("click", function () {
 
 
-    if (!currentAudio) {
-      // for (let i = 0; i < songs.length; i++) {
-      currentAudio = new Audio(songs[currentIndex]);
-      currentAudio.play();
-      // play.innerHTML = "<h1>none</h1>";
-      // }
-    } else if (currentAudio.paused) {
-      currentAudio.play();
-      // button.textContent = "Pause ⏸️";
-    } else {
-      currentAudio.pause();
-      // button.textContent = "Play ▶️";
-    }
+  if (!currentAudio) {
+    // for (let i = 0; i < songs.length; i++) {
+    currentAudio = new Audio(songs[currentIndex]);
+    currentAudio.play();
+    // play.innerHTML = "<h1>none</h1>";
+    // }
+  } else if (currentAudio.paused) {
+    currentAudio.play();
+    // button.textContent = "Pause ⏸️";
+  } else {
+    currentAudio.pause();
+    // button.textContent = "Play ▶️";
+  }
   // });
 
 }
@@ -74,17 +74,24 @@ async function nextSong() {
 }
 async function previouSong() {
   let songs = await getSongs();
-  if(songs.length === 0) {
+  if (songs.length === 0) {
     return;
   }
-  if(currentAudio){
+  if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
   }
-
-  currentIndex = (currentIndex - 1) % songs.length;
-  currentAudio = new Audio(songs[currentIndex]);
-  currentAudio.play();
+  if (currentIndex < 0) {
+    currentAudio.pause();
+    currentIndex = songs.length - 1
+    currentAudio = new Audio(songs[currentIndex]);
+    currentAudio.play();
+  }
+  else {
+    currentIndex = (currentIndex - 1) % songs.length;
+    currentAudio = new Audio(songs[currentIndex]);
+    currentAudio.play();
+  }
 }
 
 
