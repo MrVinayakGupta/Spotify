@@ -38,16 +38,18 @@ async function addSongs() {
 
 let currentAudio = null;
 let currentIndex = 0;
+//Play Pause Function
 async function playMusic() {
   let songs = await getSongs();
-  // let play = document.getElementById("play").addEventListener("click", function () {
+  let play = document.getElementById("play")
+  // .addEventListener("click", function () {
 
 
   if (!currentAudio) {
     // for (let i = 0; i < songs.length; i++) {
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
-    // play.innerHTML = "<h1>none</h1>";
+    play.style.display = "<h1>none</h1>";
     // }
   } else if (currentAudio.paused) {
     currentAudio.play();
@@ -59,6 +61,8 @@ async function playMusic() {
   // });
 
 }
+
+//Next Songs Function
 async function nextSong() {
   let songs = await getSongs();
   if (songs.length === 0) return;
@@ -72,6 +76,8 @@ async function nextSong() {
   currentAudio = new Audio(songs[currentIndex]);
   currentAudio.play();
 }
+
+//Previous Songs Funtion
 async function previouSong() {
   let songs = await getSongs();
   if (songs.length === 0) {
@@ -98,46 +104,20 @@ async function previouSong() {
 async function main() {
   let songs = await getSongs();
 
-  let currentAudio = null;
-  let currentIndex = 0;
-
   //For Play and Pause
   let play = document.getElementById("play").addEventListener("click", function () {
-    playMusic();
+    playMusic(); //calling Play Pause Function
   });
 
   //For Next songs
   let next = document.getElementById("nextSong").addEventListener("click", function () {
-    nextSong();
-    // if (event.target.id === 'nextSong') {
-    //   currentAudio.pause();
-    //   currentAudio = new Audio(songs[currentIndex + 1]);
-    //   currentAudio.play();
-
-    // }
-    // return currentAudio;
+    nextSong(); //calling Next songs Function
   });
 
   //For Previes songs
   let previes = document.getElementById("previouSong").addEventListener("click", function () {
-    previouSong();
-    // if (event.target.id === 'previeSongs') {
-    //   currentAudio.pause();
-    //   currentAudio = new Audio(songs[currentIndex - 1]);
-    //   currentAudio.play();
-    // }
+    previouSong(); //calling Previos Songs Funtion
   });
-
-  // for (let i = 0; i < songs.length; i++) {
-  //     const audio = new Audio(songs[i]);
-  //     audio.play();
-  //     function pauseAudio() {
-  //         audio = document.getElementById('play');
-  //         audio.pause();
-  //     }
-  // }
-  // });
-
 
 }
 
