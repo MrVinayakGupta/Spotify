@@ -298,6 +298,16 @@ footer {
     font-size: 35px;
     margin: 0 2px;
 }
+#pause{
+    font-size: 30px;
+    opacity: 1;
+    margin: 0 5px;
+    display: none;
+}
+#pause:hover{
+    font-size: 35px;
+    margin: 0 2px;
+}
 .timeLaps{
     display: flex;
     align-items: center;
