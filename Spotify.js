@@ -42,6 +42,7 @@ let currentIndex = 0;
 async function playMusic() {
   let songs = await getSongs();
   let play = document.getElementById("play")
+  let pause = document.getElementById("pause")
   // .addEventListener("click", function () {
 
 
@@ -49,14 +50,18 @@ async function playMusic() {
     // for (let i = 0; i < songs.length; i++) {
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
-    play.style.display = "<h1>none</h1>";
+    // play.style.display = "none";
+    // pause.style.display = "inline";
     // }
   } else if (currentAudio.paused) {
     currentAudio.play();
-    // button.textContent = "Pause ⏸️";
+    // play.style.display = "none";
+    // pause.style.display = "inline";
+
   } else {
     currentAudio.pause();
-    // button.textContent = "Play ▶️";
+    // play.style.display = "inline";
+    // pause.style.display = "none";
   }
   // });
 
