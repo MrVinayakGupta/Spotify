@@ -313,7 +313,7 @@ footer {
     align-items: center;
     font-size: 15px;
 }
-.timeLaps input{
+.timeLaps progress{
     width: 400px;
     height: 2px;
 }
