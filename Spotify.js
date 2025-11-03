@@ -24,16 +24,19 @@ async function addSongs() {
   let songs = await getSongs();
 
   for (const song of songs) {
-    let fileName = song.split("/").pop().replace(".mp3", "");
-    cardContainer.innerHTML += `
+    const audio = new Audio(song);
+    audio.addEventListener("loadedmetadata", () => {
+      const duration = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
+
+      cardContainer.innerHTML += `
       <div class="card">
         <a href="${song}">
-          <img width="150"
-            src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432&m=6&x=610&y=168&s=341&d=341">
-          <h5>${fileName}</h5>
-          <p>hits to boost your mood and fill you with...</p>
+          <img width="150" src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432&m=6&x=610&y=168&s=341&d=341">
+          <h5>${song.split("/").pop()}</h5>
+          <p>Duration: ${duration}</p>
         </a>
       </div>`;
+    });
   }
 }
 
@@ -51,16 +54,37 @@ async function playMusic() {
     // for (let i = 0; i < songs.length; i++) {
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
     // play.style.display = "none";
     // pause.style.display = "inline";
     // }
   } else if (currentAudio.paused) {
     currentAudio.play();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
     // play.style.display = "none";
     // pause.style.display = "inline";
 
   } else {
     currentAudio.pause();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
     // play.style.display = "inline";
     // pause.style.display = "none";
   }
