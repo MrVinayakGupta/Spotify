@@ -18,7 +18,7 @@ async function getSongs() {
   return songs;
 }
 
-
+//This code is use when we add songs in our songs directory. Usings this code we add songs in our website
 async function addSongs() {
   let cardContainer = document.getElementsByClassName("cardCont")[0]; // Fix: access first element
   let songs = await getSongs();
