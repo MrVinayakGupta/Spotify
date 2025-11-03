@@ -64,7 +64,6 @@ async function playMusic() {
     });
     // play.style.display = "none";
     // pause.style.display = "inline";
-    // }
   } else if (currentAudio.paused) {
     currentAudio.play();
     const progressBar = document.getElementById("progressBar");
@@ -100,12 +99,26 @@ async function nextSong() {
 
   if (currentAudio) {
     currentAudio.pause();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
     currentAudio.currentTime = 0;
   }
 
   currentIndex = (currentIndex + 1) % songs.length; // Loop to start if at end
   currentAudio = new Audio(songs[currentIndex]);
   currentAudio.play();
+  const progressBar = document.getElementById("progressBar");
+
+  // Update progress as the song plays
+  currentAudio.addEventListener("timeupdate", () => {
+    const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+    progressBar.value = percent;
+  });
 }
 
 //Previous Songs Funtion
@@ -116,6 +129,13 @@ async function previouSong() {
   }
   if (currentAudio) {
     currentAudio.pause();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
     currentAudio.currentTime = 0;
   }
   if (currentIndex < 0) {
@@ -123,11 +143,25 @@ async function previouSong() {
     currentIndex = songs.length - 1
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
   }
   else {
     currentIndex = (currentIndex - 1) % songs.length;
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
+    const progressBar = document.getElementById("progressBar");
+
+    // Update progress as the song plays
+    currentAudio.addEventListener("timeupdate", () => {
+      const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.value = percent;
+    });
   }
 }
 
