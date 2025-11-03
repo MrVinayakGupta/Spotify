@@ -18,23 +18,28 @@ async function getSongs() {
   return songs;
 }
 
-
 async function addSongs() {
-  let cardContainer = document.getElementsByClassName("cardCont")[0]; // Fix: access first element
+  let cardContainer = document.getElementsByClassName("cardCont")[0];
   let songs = await getSongs();
 
   for (const song of songs) {
+    // Extract file name from song URL
+    let fileName = song.split("/").pop().replace(".mp3", "");
+    
+    // Build image URL dynamically (assuming .jpg format and same folder)
+    let imageUrl = `http://127.0.0.1:5500/Spotify/songs/${fileName}.jpg`;
+
     cardContainer.innerHTML += `
       <div class="card">
         <a href="${song}">
-          <img width="150"
-            src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432&m=6&x=610&y=168&s=341&d=341">
-          <h5>Happy hits!</h5>
-          <p>hits to boost your mood and fill you with...</p>
+          <img width="150" src="${imageUrl}" alt="${fileName}">
+          <h5>${fileName}</h5>
+          <p>Click to play this track</p>
         </a>
       </div>`;
   }
 }
+
 
 let currentAudio = null;
 let currentIndex = 0;
