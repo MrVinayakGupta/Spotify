@@ -80,7 +80,6 @@ async function playMusic() {
     // play.style.display = "inline";
     // pause.style.display = "none";
   }
-  // });
 
 }
 
