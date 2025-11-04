@@ -68,6 +68,7 @@ async function playMusic() {
     progress();
     // play.style.display = "none";
     // pause.style.display = "inline";
+    
   } else if (currentAudio.paused) {
     currentAudio.play();
     progress();
