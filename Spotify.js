@@ -41,7 +41,9 @@ async function addSongs() {
   }
 }
 
-function progress() {
+async function progress() {
+  let songs = await getSongs();
+
   const progressBar = document.getElementById("progressBar");
 
   // Update progress as the song plays
@@ -49,6 +51,14 @@ function progress() {
     const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
     progressBar.value = percent;
   });
+
+  const endTime = document.getElementById("endTime");
+  for (const song of songs) {
+    const audio = new Audio(song);
+    const duration = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
+    
+    endTime.innerHTML = `<p>${duration} </p>`
+  }
 }
 
 let currentAudio = null;
@@ -68,7 +78,7 @@ async function playMusic() {
     progress();
     // play.style.display = "none";
     // pause.style.display = "inline";
-    
+
   } else if (currentAudio.paused) {
     currentAudio.play();
     progress();
