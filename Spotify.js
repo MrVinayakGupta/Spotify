@@ -72,20 +72,32 @@ async function playMusic() {
 
 
   if (!currentAudio) {
-    // for (let i = 0; i < songs.length; i++) {
+    
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
     progress();
-    // play.style.display = "none";
-    // pause.style.display = "inline";
+    play.addEventListener("click", () => {
+      
+      play.style.display = "none";
+      pause.style.display = "inline";
+    });
+
 
   } else if (currentAudio.paused) {
+    pause.addEventListener("click", () => {
+      pause.style.display = "none";
+      play.style.display = "inline";
+    });
     currentAudio.play();
     progress();
     // play.style.display = "none";
     // pause.style.display = "inline";
 
   } else {
+    pause.addEventListener("click", () => {
+      pause.style.display = "none";
+      play.style.display = "inline";
+    });
     currentAudio.pause();
     progress();
     // play.style.display = "inline";
