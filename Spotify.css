@@ -280,7 +280,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* line-height: 15px; */
+    position: relative;
+    bottom: 7px;
 }
 .musicControler{
     display: flex;
@@ -296,12 +297,13 @@ footer {
     opacity: 1;
 }
 #play{
-    font-size: 35px;
+    font-size: 30px;
     opacity: 1;
+    margin: 0 5px;
 }
 #play:hover{
-    font-size: 37px;
-    
+    font-size: 35px;
+    margin: 0 2px;
 }
 #pause{
     font-size: 30px;
@@ -317,6 +319,8 @@ footer {
     display: flex;
     align-items: center;
     font-size: 15px;
+    position: fixed;
+    bottom: 1px;
 }
 .timeLaps input{
     width: 400px;
