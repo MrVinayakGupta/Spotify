@@ -85,7 +85,7 @@ async function playMusic() {
 
   } else if (currentAudio.paused) {
     pause.addEventListener("click", () => {
-      pause.style.display = "none";
+      pause.style.display = "inline";
       play.style.display = "none";
     });
     currentAudio.play();
