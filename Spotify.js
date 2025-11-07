@@ -90,13 +90,11 @@ async function playMusic() {
     });
     currentAudio.play();
     progress();
-    // play.style.display = "none";
-    // pause.style.display = "inline";
 
   } else {
     pause.addEventListener("click", () => {
-      pause.style.display = "none";
-      play.style.display = "inline";
+      pause.style.display = "inline";
+      play.style.display = "none";
     });
     currentAudio.pause();
     progress();
