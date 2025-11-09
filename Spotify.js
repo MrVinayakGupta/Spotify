@@ -62,6 +62,7 @@ async function progress() {
 
 let currentAudio = null;
 let currentIndex = 0;
+
 //Play Pause Function
 async function playMusic() {
   let songs = await getSongs();
