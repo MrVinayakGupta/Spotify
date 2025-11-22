@@ -1,42 +1,48 @@
+const SONGS_INDEX_URL = "http://127.0.0.1:5500/Spotify/songs/";
+
 async function getSongs() {
-  let a = await fetch("http://127.0.0.1:5500/Spotify/songs/");
-  let response = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let as = div.getElementsByTagName("a");
-  let songs = [];
-
-  for (let index = 0; index < as.length; index++) {
-    const element = as[index];
-    if (element.href.endsWith(".mp3")) {
-      songs.push(element.href);
-    }
-  }
-
-
+  const res = await fetch(SONGS_INDEX_URL);
+  const html = await res.text();
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = html;
+  const anchors = Array.from(wrapper.getElementsByTagName("a"));
+  const songs = anchors
+    .map(a => a.href)
+    .filter(h => typeof h === "string" && h.endsWith(".mp3"));
   return songs;
+}
+
+
+function formatDuration(sec) {
+  if (!isFinite(sec) || isNaN(sec) || sec <= 0) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
 }
 
 //This code is use when we add songs in our songs directory. Usings this code we add songs in our website
 async function addSongs() {
-  let cardContainer = document.getElementsByClassName("cardCont")[0]; // Fix: access first element
+  let cardContainer = document.querySelector(".cardCont"); // Fix: access first element
   let songs = await getSongs();
 
-  for (const song of songs) {
-    const audio = new Audio(song);
-    audio.addEventListener("loadedmetadata", () => {
-      const duration = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
+  for (const src of songs) {
+    const filename = src.split("/").pop().replace(".mp3", "");
+    const imgUrl = `${SONGS_INDEX_URL}${filename}.jpg`;
+    const audio = new Audio(src);
+    const card = document.createElement("div");
+    card.setAttribute("class", "card");
 
-      cardContainer.innerHTML += `
-      <div class="card">
-        <a href="${song}">
-          <img width="150" src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432&m=6&x=610&y=168&s=341&d=341">
-          <h5>${song.split("/").pop().replace(".mp3", "")}</h5>
-          <p>hits to boost your mood and fill you with...</p>
-          <p>Duration: ${duration}</p>
-        </a>
-      </div>`;
-    });
+    card.innerHTML = `
+      <a href="${src}" class="card-link" data-src="${src}">
+        <img width="150" src="${imgUrl}" alt="${filename}" onerror="this.src='https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1PEfVA.img?w=768&h=432'">
+        <h5>${filename}</h5>
+        <p>hits to boost your mood and fill you with...</p>
+        <p>Duration: <span class="dur">${formatDuration()}</span></p>
+      </a>
+    `;
+      
+
+    cardContainer.appendChild(card);
   }
 }
 
