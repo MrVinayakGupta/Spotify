@@ -49,7 +49,7 @@ async function addSongs() {
 async function progress() {
   let songs = await getSongs();
 
-  const progressBar = document.getElementById("progressBar");
+  const progressBar = document.querySelector("#progressBar");
 
   // Update progress as the song plays
   currentAudio.addEventListener("timeupdate", () => {
@@ -62,7 +62,7 @@ async function progress() {
     const audio = new Audio(song);
     const duration = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
     
-    endTime.innerHTML = `<p>${duration} </p>`
+    endTime.innerHTML = `<p> ${duration} </p>`
   }
 }
 
