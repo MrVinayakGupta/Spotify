@@ -81,7 +81,7 @@ async function playMusic() {
     
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
-    progress();
+    formatDuration();
     play.addEventListener("click", () => {
       
       play.style.display = "none";
@@ -95,7 +95,7 @@ async function playMusic() {
       play.style.display = "inline";
     });
     currentAudio.play();
-    progress();
+    formatDuration();
 
   } else {
     pause.addEventListener("click", () => {
@@ -103,7 +103,7 @@ async function playMusic() {
       play.style.display = "none";
     });
     currentAudio.pause();
-    progress();
+    formatDuration();
   }
 
 }
@@ -115,14 +115,14 @@ async function nextSong() {
 
   if (currentAudio) {
     currentAudio.pause();
-    progress();
+    formatDuration();
     currentAudio.currentTime = 0;
   }
 
   currentIndex = (currentIndex + 1) % songs.length; // Loop to start if at end
   currentAudio = new Audio(songs[currentIndex]);
   currentAudio.play();
-  progress();
+  formatDuration();
 }
 
 //Previous Songs Funtion
@@ -133,7 +133,7 @@ async function previouSong() {
   }
   if (currentAudio) {
     currentAudio.pause();
-    progress();
+    formatDuration();
     currentAudio.currentTime = 0;
   }
   if (currentIndex < 0) {
@@ -141,13 +141,13 @@ async function previouSong() {
     currentIndex = songs.length - 1
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
-    progress();
+    formatDuration();
   }
   else {
     currentIndex = (currentIndex - 1) % songs.length;
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
-    progress();
+    formatDuration();
   }
 }
 
