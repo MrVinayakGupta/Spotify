@@ -58,7 +58,7 @@ async function addSongs() {
       const dur = card.querySelector(".dur");
       if (dur) dur.textContent = "0:00";
     }, { once: true });
-    
+
     // play when card clicked
     const link = card.querySelector(".card-link");
     link.addEventListener("click", (e) => {
@@ -67,7 +67,10 @@ async function addSongs() {
       const idx = songs.indexOf(s);
       if (idx !== -1) {
         currentIndex = idx;
-        // reuse playMusic to handle playback
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio = null; // force playMusic to create a new Audio
+        }
         playMusic();
       }
     });
@@ -89,7 +92,7 @@ async function progress() {
   for (const song of songs) {
     const audio = new Audio(song);
     const duration = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
-    
+
     endTime.innerHTML = `<p> ${duration} </p>`
   }
 }
@@ -104,12 +107,12 @@ async function playMusic() {
 
 
   if (!currentAudio) {
-    
+
     currentAudio = new Audio(songs[currentIndex]);
     currentAudio.play();
     formatDuration();
     play.addEventListener("click", () => {
-      
+
       play.style.display = "none";
       pause.style.display = "inline";
     });
