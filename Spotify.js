@@ -1,3 +1,6 @@
+let currentAudio = null;
+let currentIndex = 0;
+
 const SONGS_INDEX_URL = "http://127.0.0.1:5500/Spotify/songs/";
 
 async function getSongs() {
@@ -40,9 +43,34 @@ async function addSongs() {
         <p>Duration: <span class="dur">${formatDuration()}</span></p>
       </a>
     `;
-      
-
     cardContainer.appendChild(card);
+
+    // load metadata to show duration
+    const temp = new Audio();
+    temp.preload = "metadata";
+    temp.src = src;
+    temp.addEventListener("loadedmetadata", () => {
+      const dur = card.querySelector(".dur");
+      if (dur) dur.textContent = formatDuration(temp.duration);
+      temp.src = ""; // release resource
+    }, { once: true });
+    temp.addEventListener("error", () => {
+      const dur = card.querySelector(".dur");
+      if (dur) dur.textContent = "0:00";
+    }, { once: true });
+    
+    // play when card clicked
+    const link = card.querySelector(".card-link");
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const s = e.currentTarget.dataset.src;
+      const idx = songs.indexOf(s);
+      if (idx !== -1) {
+        currentIndex = idx;
+        // reuse playMusic to handle playback
+        playMusic();
+      }
+    });
   }
 }
 
@@ -66,8 +94,6 @@ async function progress() {
   }
 }
 
-let currentAudio = null;
-let currentIndex = 0;
 
 //Play Pause Function
 async function playMusic() {
